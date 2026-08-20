@@ -4,18 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hazim Marzuki | Software Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --green: #00ffaa;
   --green-dim: rgba(0,255,170,0.12);
   --green-border: rgba(0,255,170,0.25);
   --white: #f0faf5;
-  --muted: rgba(240,250,245,0.5);
+  --muted: rgba(240,250,245,0.65);
+  --text-body: rgba(240,250,245,0.85);
+  --text-dim: rgba(240,250,245,0.32);
   --bg: #050d0a;
   --card: rgba(255,255,255,0.04);
   --card-hover: rgba(0,255,170,0.06);
   --card-border: rgba(255,255,255,0.07);
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 20px;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -50,13 +57,7 @@ body {
 /* ── Hero ── */
 .hero {
   padding: 7rem 0 4rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 2rem;
 }
-
-.hero-left {}
 
 .status-dot {
   display: inline-flex;
@@ -76,17 +77,10 @@ body {
   width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--green);
-  box-shadow: 0 0 8px var(--green);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,100% { opacity:1; transform:scale(1); }
-  50% { opacity:0.5; transform:scale(0.8); }
 }
 
 .hero-name {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 800;
   line-height: 0.95;
@@ -103,9 +97,9 @@ body {
 }
 
 .hero-role {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--muted);
-  font-weight: 300;
+  font-weight: 500;
   margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeUp 0.7s 0.35s forwards;
@@ -114,67 +108,15 @@ body {
 .hero-bio {
   font-size: 0.95rem;
   line-height: 1.75;
-  color: rgba(240,250,245,0.65);
+  color: var(--text-body);
   max-width: 520px;
   opacity: 0;
   animation: fadeUp 0.7s 0.45s forwards;
 }
 
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  padding-top: 7rem;
-  opacity: 0;
-  animation: fadeUp 0.7s 0.5s forwards;
-}
-
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #003322, #001a11);
-  border: 2px solid var(--green-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Syne', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--green);
-  position: relative;
-  overflow: hidden;
-}
-
-.avatar::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  background: conic-gradient(var(--green), transparent, var(--green));
-  z-index: -1;
-  animation: spin 4s linear infinite;
-  opacity: 0.4;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.open-badge {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--green);
-  background: var(--green-dim);
-  border: 1px solid var(--green-border);
-  padding: 4px 10px;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
 /* ── Section ── */
 .section {
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s, transform 0.6s;
@@ -186,7 +128,7 @@ body {
 }
 
 .section-label {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -219,11 +161,11 @@ body {
   font-size: 0.8rem;
   color: var(--muted);
   padding-top: 3px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .exp-role {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--white);
@@ -238,8 +180,60 @@ body {
 
 .exp-desc {
   font-size: 0.875rem;
-  color: rgba(240,250,245,0.6);
+  color: var(--text-body);
   line-height: 1.65;
+}
+
+/* ── Case Study ── */
+.case-study {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.case-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.case-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+  max-width: 460px;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.case-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.6rem;
+}
+
+.case-text {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--text-body);
 }
 
 /* ── Projects ── */
@@ -252,7 +246,7 @@ body {
 .project-card {
   background: var(--card);
   border: 1px solid var(--card-border);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   transition: all 0.3s ease;
   cursor: default;
@@ -279,7 +273,7 @@ body {
 .project-card:hover::before { opacity: 1; }
 
 .project-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 0.7rem;
   color: var(--green);
   letter-spacing: 0.1em;
@@ -288,7 +282,7 @@ body {
 }
 
 .project-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--white);
@@ -297,7 +291,7 @@ body {
 
 .project-desc {
   font-size: 0.85rem;
-  color: rgba(240,250,245,0.55);
+  color: var(--text-body);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
@@ -311,7 +305,7 @@ body {
 .tag {
   font-size: 0.72rem;
   padding: 3px 9px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
   background: var(--green-dim);
   color: var(--green);
   border: 1px solid var(--green-border);
@@ -352,9 +346,9 @@ body {
   padding: 0.7rem 1rem;
   background: var(--card);
   border: 1px solid var(--card-border);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   font-size: 0.875rem;
-  color: rgba(240,250,245,0.75);
+  color: var(--text-body);
   transition: all 0.25s;
   cursor: default;
 }
@@ -374,11 +368,63 @@ body {
   opacity: 0.7;
 }
 
+/* ── Languages ── */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.lang-item {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  transition: all 0.25s;
+}
+
+.lang-item:hover {
+  border-color: var(--green-border);
+  background: var(--card-hover);
+}
+
+.lang-name {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+}
+
+.lang-level {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.lang-dot {
+  width: 18px;
+  height: 4px;
+  border-radius: var(--radius-xs);
+  background: var(--card-border);
+}
+
+.lang-dot.filled {
+  background: var(--green);
+}
+
+.lang-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* ── Education ── */
 .edu-card {
   background: var(--card);
   border: 1px solid var(--card-border);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 1.4rem 1.6rem;
   display: flex;
   justify-content: space-between;
@@ -393,7 +439,7 @@ body {
 }
 
 .edu-degree {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--white);
@@ -426,7 +472,7 @@ body {
   padding: 0.9rem 1.2rem;
   background: var(--card);
   border: 1px solid var(--card-border);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   transition: all 0.25s;
 }
 
@@ -437,11 +483,11 @@ body {
 
 .cert-icon {
   width: 32px; height: 32px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: var(--green-dim);
   border: 1px solid var(--green-border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
+  color: var(--green);
   flex-shrink: 0;
 }
 
@@ -476,11 +522,11 @@ body {
   align-items: center;
   gap: 7px;
   padding: 6px 14px;
-  border-radius: 20px;
+  border-radius: var(--radius-pill);
   background: var(--card);
   border: 1px dashed var(--green-border);
   font-size: 0.82rem;
-  color: rgba(240,250,245,0.65);
+  color: var(--text-body);
   transition: all 0.25s;
 }
 
@@ -508,7 +554,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
@@ -557,43 +603,48 @@ body {
   color: var(--muted);
 }
 
-.contact-line span {
+.contact-line .icon {
+  display: inline-flex;
   color: var(--green);
-  font-size: 0.9rem;
 }
 
 /* placeholder text style */
 .placeholder {
-  color: rgba(240,250,245,0.2);
+  color: var(--text-dim);
   font-style: italic;
   font-size: 0.85rem;
 }
 
-.avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 2rem;
-
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255,255,255,0.15);
-
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-
-  transition: all 0.3s ease;
+/* ── Focus states ── */
+.contact-btn:focus-visible,
+.project-link:focus-visible,
+.back-to-top:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
 }
 
-/* hover effect 🔥 */
-.avatar:hover {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+/* ── Footer ── */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 2rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--card-border);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.back-to-top {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.back-to-top:hover {
+  color: var(--green);
 }
 
 /* ── Animations ── */
@@ -604,9 +655,8 @@ body {
 
 /* ── Responsive ── */
 @media (max-width: 640px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-right { flex-direction: row; padding-top: 0; justify-content: flex-start; }
   .projects-grid { grid-template-columns: 1fr; }
+  .case-grid { grid-template-columns: 1fr; }
   .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
   .exp-period { font-size: 0.75rem; }
 }
@@ -616,32 +666,29 @@ body {
 
 <canvas id="bg-canvas"></canvas>
 
-<div class="page">
+<div class="page" id="top">
 
   <!-- HERO -->
   <div class="hero">
     <div class="hero-left">
       <div class="status-dot">Cyberjaya</div>
       <h1 class="hero-name">Hazim<span>Marzuki.</span></h1>
-      <div class="hero-role">Software Developer · </div>
+      <div class="hero-role">Software Developer</div>
       <p class="hero-bio">
         Building scalable web applications with clean architecture and performance in mind.
         Focused on developing reliable systems, efficient data handling, and maintainable code.
       </p>
     </div>
-    <!-- <div class="hero-right">
-      <div class="avatar">☕</div>
-      <div class="open-badge">869 coffes</div>
-    </div> -->
   </div>
 
   <!-- ABOUT -->
   <div class="section">
     <div class="section-label">About</div>
-    <p style="font-size:0.95rem; line-height:1.8; color:rgba(240,250,245,0.65); max-width:640px;">
-      Software Developer with over 1 year of hands-on experience building multi-role web applications.
-      Passionate about backend architecture, clean API design, and solving real-world problems through code.
-      <span class="placeholder"> — [Add more about yourself: your background, interests, goals]</span>
+    <p style="font-size:0.95rem; line-height:1.8; color:var(--text-body); max-width:640px;">
+      Software Developer with over 1 year of hands-on experience building scalable multi-role web applications.
+      Skilled in backend development and database design, with a strong focus on code quality, system performance,
+      and maintainable architecture — proven through leading development of a Cloud-Based HACCP Management System
+      and MySiswaPlace, a large-scale platform used by students and merchants across Malaysia.
     </p>
   </div>
 
@@ -650,20 +697,54 @@ body {
     <div class="section-label">Experience</div>
 
     <div class="exp-item">
-      <div class="exp-period">2024 — Now</div>
+      <div class="exp-period">Jun 2025 — Present</div>
       <div>
         <div class="exp-role">Software Developer</div>
-        <div class="exp-company placeholder">[Company Name]</div>
-        <div class="exp-desc placeholder">[Describe your role, responsibilities, and key achievements here]</div>
+        <div class="exp-company">Cubixi Worldwide (M) Sdn Bhd</div>
+        <div class="exp-desc">Developed MySiswaPlace, a multi-role platform for students, merchants, and admins with role-based access control. Built merchant dashboards for inventory, orders, and transaction tracking, and led development of a Cloud-Based HACCP System for regulatory compliance. Delivered secure, scalable workflows using Java, Spring, Bootstrap, jQuery, PostgreSQL, and GitLab.</div>
       </div>
     </div>
 
     <div class="exp-item">
-      <div class="exp-period placeholder">[Year]</div>
+      <div class="exp-period">Sep 2024 — Feb 2025</div>
       <div>
-        <div class="exp-role placeholder">[Previous Role / Internship]</div>
-        <div class="exp-company placeholder">[Company Name]</div>
-        <div class="exp-desc placeholder">[Describe what you did]</div>
+        <div class="exp-role">Software Engineer (Internship)</div>
+        <div class="exp-company">Finexus Group</div>
+        <div class="exp-desc">Completed industrial training focused on fixing issues in the PAYMENZ GPI system and enhancing the eBanker FCA Screen. Strengthened skills in programming, database management, and version control using Bitbucket and SourceTree.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PROJECT -->
+  <div class="section">
+    <div class="section-label">Featured Project</div>
+    <div class="case-study">
+      <div class="case-header">
+        <div>
+          <div class="case-title">MySiswaPlace</div>
+          <div class="case-subtitle">Multi-role book marketplace built for Malaysia's MADANI Book Voucher initiative</div>
+        </div>
+        <a href="https://mysiswaplace.my/welcome" target="_blank" class="contact-btn secondary">Visit site ↗</a>
+      </div>
+      <div class="case-grid">
+        <div class="case-block">
+          <div class="case-label">The Problem</div>
+          <p class="case-text">Students across Malaysia needed a way to redeem book vouchers and buy from approved merchants nationwide, while merchants and admins needed reliable tools to manage inventory, orders, and shipping — all inside one multi-role system with role-based access control.</p>
+        </div>
+        <div class="case-block">
+          <div class="case-label">What I Built</div>
+          <p class="case-text">Built the admin dashboard for overseeing users and system operations, integrated a courier API to automate shipping and delivery, and designed the end-to-end order-processing flow admins use to manage transactions from placement through fulfillment.</p>
+        </div>
+        <div class="case-block">
+          <div class="case-label">What I Learned</div>
+          <p class="case-text">Learned how to integrate a third-party courier API and build webhooks to receive real-time delivery status updates. This also strengthened my understanding of request validation and safeguarding data integrity across many concurrent transactions, where multiple roles — students, merchants, and admins — can act on the same order at once.</p>
+        </div>
+      </div>
+      <div class="project-tags" style="margin-top:1.5rem;">
+        <span class="tag">Java</span>
+        <span class="tag">Spring</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">GitLab</span>
       </div>
     </div>
   </div>
@@ -682,16 +763,15 @@ body {
           inventory management, and transaction tracking.
         </div>
         <div class="project-tags">
-          <span class="tag">Laravel</span>
-          <span class="tag">PHP</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">RBAC</span>
+          <span class="tag">Java</span>
+          <span class="tag">Spring</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">GitLab</span>
         </div>
       </div>
 
       <div class="project-card">
         <div class="project-num">02</div>
-        <a href="#" class="project-link" title="View project">↗</a>
         <div class="project-title">Cloud-Based HACCP System</div>
         <div class="project-desc">
           Hazard analysis and compliance tracking system with structured documentation
@@ -704,21 +784,32 @@ body {
         </div>
       </div>
 
-      <div class="project-card" style="border-style: dashed; opacity: 0.5;">
+      <div class="project-card">
         <div class="project-num">03</div>
-        <div class="project-title placeholder">[Project Title]</div>
-        <div class="project-desc placeholder">[Add your next project here]</div>
+        <div class="project-title">PAYMENZ GPI</div>
+        <div class="project-desc">
+          Financial system for processing international remittance transactions (FOTT/FITT) and SWIFT GPI
+          tracking. Refactored complex methods and resolved SonarQube/SonarLint issues to improve code quality.
+        </div>
         <div class="project-tags">
-          <span class="tag" style="opacity:0.4">Coming soon</span>
+          <span class="tag">Java</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">SQL</span>
         </div>
       </div>
 
-      <div class="project-card" style="border-style: dashed; opacity: 0.5;">
+      <div class="project-card">
         <div class="project-num">04</div>
-        <div class="project-title placeholder">[Project Title]</div>
-        <div class="project-desc placeholder">[Add your next project here]</div>
+        <div class="project-title">BidMe</div>
+        <div class="project-desc">
+          Microservice-based bidding platform letting users list and bid on items for sale — final year
+          project at UiTM Jasin.
+        </div>
         <div class="project-tags">
-          <span class="tag" style="opacity:0.4">Coming soon</span>
+          <span class="tag">PHP</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Heroku</span>
         </div>
       </div>
 
@@ -730,14 +821,57 @@ body {
     <div class="section-label">Skills</div>
     <div class="skills-grid">
       <div class="skill-item"><div class="skill-dot"></div>Java</div>
-      <div class="skill-item"><div class="skill-dot"></div>Spring Boot</div>
-      <div class="skill-item"><div class="skill-dot"></div>Laravel</div>
       <div class="skill-item"><div class="skill-dot"></div>PHP</div>
       <div class="skill-item"><div class="skill-dot"></div>JavaScript</div>
-      <div class="skill-item"><div class="skill-dot"></div>Node.js</div>
-      <div class="skill-item"><div class="skill-dot"></div>PostgreSQL</div>
+      <div class="skill-item"><div class="skill-dot"></div>HTML</div>
+      <div class="skill-item"><div class="skill-dot"></div>CSS</div>
+      <div class="skill-item"><div class="skill-dot"></div>Spring Boot</div>
+      <div class="skill-item"><div class="skill-dot"></div>Laravel</div>
+      <div class="skill-item"><div class="skill-dot"></div>Bootstrap</div>
+      <div class="skill-item"><div class="skill-dot"></div>jQuery</div>
+      <div class="skill-item"><div class="skill-dot"></div>MVC</div>
+      <div class="skill-item"><div class="skill-dot"></div>OOP</div>
       <div class="skill-item"><div class="skill-dot"></div>MySQL</div>
-      <div class="skill-item" style="opacity:0.35; border-style:dashed;"><div class="skill-dot" style="opacity:0.3"></div><span class="placeholder">+ Add skill</span></div>
+      <div class="skill-item"><div class="skill-dot"></div>PostgreSQL</div>
+      <div class="skill-item"><div class="skill-dot"></div>GitLab</div>
+      <div class="skill-item"><div class="skill-dot"></div>Bitbucket</div>
+      <div class="skill-item"><div class="skill-dot"></div>SourceTree</div>
+      <div class="skill-item"><div class="skill-dot"></div>Heroku</div>
+      <div class="skill-item"><div class="skill-dot"></div>Node.js (Basic)</div>
+    </div>
+  </div>
+
+  <!-- SOFT SKILLS -->
+  <div class="section">
+    <div class="section-label">Soft Skills</div>
+    <div class="skills-grid">
+      <div class="skill-item"><div class="skill-dot"></div>Critical Thinking</div>
+      <div class="skill-item"><div class="skill-dot"></div>Problem Solving</div>
+      <div class="skill-item"><div class="skill-dot"></div>Teamwork</div>
+      <div class="skill-item"><div class="skill-dot"></div>Adaptability & Willingness to Learn</div>
+      <div class="skill-item"><div class="skill-dot"></div>Leadership</div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section">
+    <div class="section-label">Languages</div>
+    <div class="lang-grid">
+      <div class="lang-item">
+        <div class="lang-name">Malay</div>
+        <div class="lang-level"><span class="lang-dot filled"></span><span class="lang-dot filled"></span><span class="lang-dot filled"></span></div>
+        <div class="lang-label">Native</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">English</div>
+        <div class="lang-level"><span class="lang-dot filled"></span><span class="lang-dot filled"></span><span class="lang-dot filled"></span></div>
+        <div class="lang-label">Native</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Japanese</div>
+        <div class="lang-level"><span class="lang-dot filled"></span><span class="lang-dot"></span><span class="lang-dot"></span></div>
+        <div class="lang-label">Basic</div>
+      </div>
     </div>
   </div>
 
@@ -746,30 +880,52 @@ body {
     <div class="section-label">Education</div>
     <div class="edu-card">
       <div>
-        <div class="edu-degree placeholder">[Degree / Program Name]</div>
-        <div class="edu-school placeholder">[University / Institution]</div>
-        <div class="exp-desc placeholder" style="font-size:0.82rem; margin-top:4px;">[e.g. Bachelor of Computer Science — CGPA: X.XX]</div>
+        <div class="edu-degree">Bachelor of Information Systems (Hons.), Information Systems Engineering</div>
+        <div class="edu-school">Universiti Teknologi MARA</div>
+        <div class="exp-desc" style="font-size:0.82rem; margin-top:4px;">CGPA: 3.54</div>
       </div>
-      <div class="edu-year placeholder">[2020 — 2024]</div>
+      <div class="edu-year">2021 — 2025</div>
+    </div>
+    <div class="edu-card" style="margin-top:0.75rem;">
+      <div>
+        <div class="edu-degree">Matriculation Program (PDT), Sains Modul 2</div>
+        <div class="edu-school">Kolej Matrikulasi Selangor</div>
+        <div class="exp-desc" style="font-size:0.82rem; margin-top:4px;">CGPA: 3.96</div>
+      </div>
+      <div class="edu-year">2019 — 2021</div>
     </div>
   </div>
 
-  <!-- CERTIFICATIONS -->
+  <!-- ACHIEVEMENTS -->
   <div class="section">
-    <div class="section-label">Certifications</div>
+    <div class="section-label">Achievements</div>
     <div class="cert-list">
-      <div class="cert-item" style="opacity:0.4; border-style:dashed;">
-        <div class="cert-icon">🏅</div>
+      <div class="cert-item">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M9 13.5 7 22l5-3 5 3-2-8.5"></path></svg></div>
         <div>
-          <div class="cert-name placeholder">[Certification Name]</div>
-          <div class="cert-issuer placeholder">[Issuer — e.g. Oracle, AWS, Google]</div>
+          <div class="cert-name">Dean's List</div>
+          <div class="cert-issuer">Universiti Teknologi MARA & Kolej Matrikulasi Selangor — multiple semesters</div>
         </div>
       </div>
-      <div class="cert-item" style="opacity:0.4; border-style:dashed;">
-        <div class="cert-icon">🏅</div>
+      <div class="cert-item">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M9 13.5 7 22l5-3 5 3-2-8.5"></path></svg></div>
         <div>
-          <div class="cert-name placeholder">[Certification Name]</div>
-          <div class="cert-issuer placeholder">[Issuer]</div>
+          <div class="cert-name">Certificate of Participation</div>
+          <div class="cert-issuer">Data Mining & Artificial Intelligence Exhibition</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M9 13.5 7 22l5-3 5 3-2-8.5"></path></svg></div>
+        <div>
+          <div class="cert-name">Treasurer, Frisbee Club</div>
+          <div class="cert-issuer">Universiti Teknologi MARA (Jasin)</div>
+        </div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M9 13.5 7 22l5-3 5 3-2-8.5"></path></svg></div>
+        <div>
+          <div class="cert-name">Certificate of Appreciation — Physics (Grade A)</div>
+          <div class="cert-issuer">Kolej Matrikulasi Selangor</div>
         </div>
       </div>
     </div>
@@ -782,7 +938,7 @@ body {
       <div class="learning-pill">Docker</div>
       <div class="learning-pill">Kubernetes</div>
       <div class="learning-pill" style="opacity:0.4; border-color:rgba(255,255,255,0.1);">
-        <span style="color:var(--muted); font-style:italic">+ Add what you're learning</span>
+        <span style="color:var(--text-dim); font-style:italic">+ Add what you're learning</span>
       </div>
     </div>
   </div>
@@ -791,34 +947,36 @@ body {
   <div class="section">
     <div class="section-label">Contact</div>
     <div class="contact-row">
-      <a href="https://www.linkedin.com/in/hazim-m-61aa28311/" target="_blank" class="contact-btn primary">
+      <a href="mailto:hazimmarzuki.dev@gmail.com" class="contact-btn primary">
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/hazim-m-61aa28311/" target="_blank" class="contact-btn secondary">
         LinkedIn ↗
       </a>
       <!-- <a href="#" class="contact-btn secondary">
         GitHub ↗
       </a> -->
-      <a href="mailto:hazimmarzuki.dev@gmail.com" class="contact-btn primary">
-        Email
-      </a>
-      <a href="https://drive.google.com/file/d/1oSQya6n1nLCKICKSNrBAtPZfowvfX4fA/view?usp=sharing" 
-        target="_blank" 
+      <a href="https://drive.google.com/file/d/1oSQya6n1nLCKICKSNrBAtPZfowvfX4fA/view?usp=sharing"
+        target="_blank"
         rel="noopener noreferrer"
-        class="contact-btn primary">
+        class="contact-btn secondary">
         Resume ↓
       </a>
     </div>
     <div class="contact-info">
       <div class="contact-line">
-        <span>✉</span> <span class="placeholder">hazimmarzuki.dev@gmail.com</span>
+        <span class="icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 6-10 7L2 6"></path></svg></span> hazimmarzuki.dev@gmail.com
       </div>
       <div class="contact-line">
-        <span>📍</span> Cyberjaya, Putrajaya, Serdang, Sepang
+        <span class="icon"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span> Cyberjaya, Putrajaya, Serdang, Sepang
       </div>
-      <!-- <div class="contact-line">
-        <span>🐙</span> <span class="placeholder">[github.com/yourusername]</span>
-      </div> -->
     </div>
   </div>
+
+  <footer class="site-footer">
+    <span>© 2026 Hazim Marzuki</span>
+    <a href="#top" class="back-to-top">Back to top ↑</a>
+  </footer>
 
 </div><!-- /page -->
 
