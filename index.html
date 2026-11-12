@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hazim Marzuki | Software Developer</title>
+<link rel="shortcut icon" href="image/HM-logo-1.png">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -47,6 +48,38 @@ body {
 /* ── Hero ── */
 .hero {
   padding: 7rem 0 4rem;
+}
+
+.hero-grid {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.hero-photo {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--gold-border);
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s forwards;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.hero-photo:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px 2px rgba(212,175,55,0.35), 0 0 50px 8px rgba(212,175,55,0.18);
+  transform: scale(1.02);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .status-dot {
@@ -339,12 +372,39 @@ body {
   opacity: 0.75;
 }
 
+.project-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.6rem;
+}
+
+.project-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  flex-shrink: 0;
+}
+
+.project-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .project-title {
   font-family: 'Source Serif 4', serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 0.6rem;
+  margin: 0;
 }
 
 .project-desc {
@@ -713,6 +773,8 @@ body {
   .hero-stats { grid-template-columns: 1fr; }
   .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
   .exp-period { font-size: 0.75rem; }
+  .hero-grid { flex-direction: column-reverse; }
+  .hero-photo { width: 100px; height: 100px; }
 }
 </style>
 </head>
@@ -722,20 +784,23 @@ body {
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-left">
-      <div class="status-dot">Cyberjaya</div>
-      <h1 class="hero-name">Hazim<span>Marzuki.</span></h1>
-      <div class="hero-rule"></div>
-      <div class="hero-role">Software Developer</div>
-      <p class="hero-bio">
-        Building scalable web applications with clean architecture and performance in mind.
-        Focused on developing reliable systems, efficient data handling, and maintainable code.
-      </p>
-      <div class="hero-stats">
-        <div class="hero-stat"><b>4</b><span>Systems shipped</span></div>
-        <div class="hero-stat"><b>1yr+</b><span>Experience</span></div>
-        <div class="hero-stat"><b>3</b><span>Roles per system</span></div>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="status-dot">Cyberjaya</div>
+        <h1 class="hero-name">Hazim<span>Marzuki.</span></h1>
+        <div class="hero-rule"></div>
+        <div class="hero-role">Software Developer</div>
+        <p class="hero-bio">
+          Building scalable web applications with clean architecture and performance in mind.
+          Focused on developing reliable systems, efficient data handling, and maintainable code.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>4</b><span>Systems shipped</span></div>
+          <div class="hero-stat"><b>1yr+</b><span>Experience</span></div>
+          <div class="hero-stat"><b>3</b><span>Roles per system</span></div>
+        </div>
       </div>
+      <div class="hero-photo"><img src="image/profile-img.jpg" alt="Hazim Marzuki"></div>
     </div>
   </div>
 
@@ -819,7 +884,10 @@ body {
       <div class="project-card">
         <div class="project-num">No. 01</div>
         <a href="https://mysiswaplace.my/welcome" class="project-link" target="_blank"  title="View project">↗</a>
-        <div class="project-title">MySiswaPlace</div>
+        <div class="project-head">
+          <div class="project-logo"><img src="image/msp-logo.png" alt="MySiswaPlace logo"></div>
+          <div class="project-title">MySiswaPlace</div>
+        </div>
         <div class="project-desc">
           Multi-role platform for students, merchants, and admins with role-based access control,
           inventory management, and transaction tracking.
@@ -828,7 +896,10 @@ body {
 
       <div class="project-card">
         <div class="project-num">No. 02</div>
-        <div class="project-title">IICMS</div>
+        <div class="project-head">
+          <div class="project-logo"><img src="image/iicms-logo.png" alt="IICMS logo"></div>
+          <div class="project-title">IICMS</div>
+        </div>
         <div class="project-desc">
           Web-based platform for managing industrial chemical information in Malaysia — enabling companies to
           submit chemical inventories and hazardous chemical registers in compliance with DOSH regulations.
@@ -837,7 +908,10 @@ body {
 
       <div class="project-card">
         <div class="project-num">No. 03</div>
-        <div class="project-title">Cloud-Based HACCP System</div>
+        <div class="project-head">
+          <div class="project-logo"><img src="image/haccp-logo.png" alt="HACCP System logo"></div>
+          <div class="project-title">Cloud-Based HACCP System</div>
+        </div>
         <div class="project-desc">
           Hazard analysis and compliance tracking system with structured documentation
           for food safety management in cloud environments.
@@ -846,7 +920,10 @@ body {
 
       <div class="project-card">
         <div class="project-num">No. 04</div>
-        <div class="project-title">PAYMENZ GPI</div>
+        <div class="project-head">
+          <div class="project-logo"><img src="image/paymenz-gpi-logo.png" alt="PAYMENZ GPI logo"></div>
+          <div class="project-title">PAYMENZ GPI</div>
+        </div>
         <div class="project-desc">
           Financial system for processing international remittance transactions (FOTT/FITT) and SWIFT GPI
           tracking. Refactored complex methods and resolved SonarQube/SonarLint issues to improve code quality.
@@ -855,7 +932,10 @@ body {
 
       <div class="project-card">
         <div class="project-num">No. 05</div>
-        <div class="project-title">BidMe</div>
+        <div class="project-head">
+          <div class="project-logo"><img src="image/bid-me-logo.png" alt="BidMe logo"></div>
+          <div class="project-title">BidMe</div>
+        </div>
         <div class="project-desc">
           Microservice-based bidding platform letting users list and bid on items for sale — final year
           project at UiTM Jasin.
